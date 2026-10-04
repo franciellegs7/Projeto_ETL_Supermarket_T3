@@ -1,0 +1,106 @@
+﻿secao,metrica,dimensao,categoria,subcategoria,valor
+Estatísticas descritivas,count,coluna,preco_unitario,,1000.0
+Estatísticas descritivas,mean,coluna,preco_unitario,,55.67
+Estatísticas descritivas,std,coluna,preco_unitario,,26.49
+Estatísticas descritivas,min,coluna,preco_unitario,,10.08
+Estatísticas descritivas,25%,coluna,preco_unitario,,32.88
+Estatísticas descritivas,50%,coluna,preco_unitario,,55.23
+Estatísticas descritivas,75%,coluna,preco_unitario,,77.94
+Estatísticas descritivas,max,coluna,preco_unitario,,99.96
+Estatísticas descritivas,count,coluna,quantidade,,1000.0
+Estatísticas descritivas,mean,coluna,quantidade,,5.51
+Estatísticas descritivas,std,coluna,quantidade,,2.92
+Estatísticas descritivas,min,coluna,quantidade,,1.0
+Estatísticas descritivas,25%,coluna,quantidade,,3.0
+Estatísticas descritivas,50%,coluna,quantidade,,5.0
+Estatísticas descritivas,75%,coluna,quantidade,,8.0
+Estatísticas descritivas,max,coluna,quantidade,,10.0
+Estatísticas descritivas,count,coluna,valor_total,,1000.0
+Estatísticas descritivas,mean,coluna,valor_total,,322.97
+Estatísticas descritivas,std,coluna,valor_total,,245.89
+Estatísticas descritivas,min,coluna,valor_total,,10.68
+Estatísticas descritivas,25%,coluna,valor_total,,124.42
+Estatísticas descritivas,50%,coluna,valor_total,,253.85
+Estatísticas descritivas,75%,coluna,valor_total,,471.35
+Estatísticas descritivas,max,coluna,valor_total,,1042.65
+Estatísticas descritivas,count,coluna,avaliacao,,1000.0
+Estatísticas descritivas,mean,coluna,avaliacao,,6.97
+Estatísticas descritivas,std,coluna,avaliacao,,1.72
+Estatísticas descritivas,min,coluna,avaliacao,,4.0
+Estatísticas descritivas,25%,coluna,avaliacao,,5.5
+Estatísticas descritivas,50%,coluna,avaliacao,,7.0
+Estatísticas descritivas,75%,coluna,avaliacao,,8.5
+Estatísticas descritivas,max,coluna,avaliacao,,10.0
+Estatísticas descritivas,count,nome_mes,Janeiro,valor_total,352.0
+Estatísticas descritivas,mean,nome_mes,Janeiro,valor_total,330.37
+Estatísticas descritivas,std,nome_mes,Janeiro,valor_total,247.38
+Estatísticas descritivas,min,nome_mes,Janeiro,valor_total,12.69
+Estatísticas descritivas,25%,nome_mes,Janeiro,valor_total,125.91
+Estatísticas descritivas,50%,nome_mes,Janeiro,valor_total,270.14
+Estatísticas descritivas,75%,nome_mes,Janeiro,valor_total,491.76
+Estatísticas descritivas,max,nome_mes,Janeiro,valor_total,1034.46
+Estatísticas descritivas,count,nome_mes,Fevereiro,valor_total,303.0
+Estatísticas descritivas,mean,nome_mes,Fevereiro,valor_total,320.86
+Estatísticas descritivas,std,nome_mes,Fevereiro,valor_total,244.48
+Estatísticas descritivas,min,nome_mes,Fevereiro,valor_total,10.68
+Estatísticas descritivas,25%,nome_mes,Fevereiro,valor_total,125.69
+Estatísticas descritivas,50%,nome_mes,Fevereiro,valor_total,252.76
+Estatísticas descritivas,75%,nome_mes,Fevereiro,valor_total,463.06
+Estatísticas descritivas,max,nome_mes,Fevereiro,valor_total,1042.65
+Estatísticas descritivas,count,nome_mes,Março,valor_total,345.0
+Estatísticas descritivas,mean,nome_mes,Março,valor_total,317.26
+Estatísticas descritivas,std,nome_mes,Março,valor_total,246.11
+Estatísticas descritivas,min,nome_mes,Março,valor_total,16.27
+Estatísticas descritivas,25%,nome_mes,Março,valor_total,121.13
+Estatísticas descritivas,50%,nome_mes,Março,valor_total,237.43
+Estatísticas descritivas,75%,nome_mes,Março,valor_total,462.21
+Estatísticas descritivas,max,nome_mes,Março,valor_total,1022.49
+Perfil do cliente,qtd_vendas,tipo_cliente / genero,Member,Female,356.0
+Perfil do cliente,faturamento,tipo_cliente / genero,Member,Female,125206.14
+Perfil do cliente,qtd_vendas,tipo_cliente / genero,Normal,Female,215.0
+Perfil do cliente,faturamento,tipo_cliente / genero,Normal,Female,69465.7
+Perfil do cliente,qtd_vendas,tipo_cliente / genero,Member,Male,209.0
+Perfil do cliente,faturamento,tipo_cliente / genero,Member,Male,64488.63
+Perfil do cliente,qtd_vendas,tipo_cliente / genero,Normal,Male,220.0
+Perfil do cliente,faturamento,tipo_cliente / genero,Normal,Male,63806.28
+Faturamento,faturamento,filial,Giza,,110568.71
+Faturamento,participacao_percentual,filial,Giza,,34.24
+Faturamento,faturamento,filial,Alex,,106200.37
+Faturamento,participacao_percentual,filial,Alex,,32.88
+Faturamento,faturamento,filial,Cairo,,106197.67
+Faturamento,participacao_percentual,filial,Cairo,,32.88
+Faturamento,faturamento,filial / tipo_cliente,Alex,Member,62895.78
+Faturamento,faturamento,filial / tipo_cliente,Alex,Normal,43304.59
+Faturamento,faturamento,filial / tipo_cliente,Cairo,Member,59824.17
+Faturamento,faturamento,filial / tipo_cliente,Cairo,Normal,46373.5
+Faturamento,faturamento,filial / tipo_cliente,Giza,Member,66974.82
+Faturamento,faturamento,filial / tipo_cliente,Giza,Normal,43593.89
+Faturamento,faturamento,linha_produto,Food and beverages,,56144.84
+Faturamento,faturamento,linha_produto,Sports and travel,,55122.83
+Faturamento,faturamento,linha_produto,Electronic accessories,,54337.53
+Faturamento,faturamento,linha_produto,Fashion accessories,,54305.9
+Faturamento,faturamento,linha_produto,Home and lifestyle,,53861.91
+Faturamento,faturamento,linha_produto,Health and beauty,,49193.74
+Vendas,qtd_vendas,filial,Alex,,340.0
+Vendas,qtd_vendas,filial,Cairo,,332.0
+Vendas,qtd_vendas,filial,Giza,,328.0
+Vendas,maior_venda,id_venda,860-79-0874,Giza,1042.65
+Vendas,valor_medio,geral,todas,,322.97
+Vendas,qtd_vendas,forma_pagamento,Ewallet,,345.0
+Vendas,qtd_vendas,forma_pagamento,Cash,,344.0
+Vendas,qtd_vendas,forma_pagamento,Credit card,,311.0
+Vendas,qtd_vendas,dia_semana,Sábado,,164.0
+Vendas,qtd_vendas,dia_semana,Terça-feira,,158.0
+Vendas,qtd_vendas,dia_semana,Quarta-feira,,143.0
+Vendas,qtd_vendas,dia_semana,Sexta-feira,,139.0
+Vendas,qtd_vendas,dia_semana,Quinta-feira,,138.0
+Vendas,qtd_vendas,dia_semana,Domingo,,133.0
+Vendas,qtd_vendas,dia_semana,Segunda-feira,,125.0
+Desempenho,avaliacao_media,linha_produto,Food and beverages,,7.11
+Desempenho,avaliacao_media,linha_produto,Fashion accessories,,7.03
+Desempenho,avaliacao_media,linha_produto,Health and beauty,,7.0
+Desempenho,avaliacao_media,linha_produto,Electronic accessories,,6.92
+Desempenho,avaliacao_media,linha_produto,Sports and travel,,6.92
+Desempenho,avaliacao_media,linha_produto,Home and lifestyle,,6.84
+Desempenho,avaliacao_media,tipo_cliente,Normal,,7.04
+Desempenho,avaliacao_media,tipo_cliente,Member,,6.92
