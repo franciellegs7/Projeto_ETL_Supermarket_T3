@@ -21,6 +21,16 @@ pasta_estatisticas.mkdir(parents=True, exist_ok=True)
 pasta_graficos.mkdir(parents=True, exist_ok=True)
 
 
+# Moeda e unidade de cada coluna usada nas estatísticas (coluna "unidade" do CSV)
+MOEDA = "R$"
+
+UNIDADES_COLUNAS = {
+    "preco_unitario": MOEDA,
+    "quantidade": "itens",
+    "valor_total": MOEDA,
+    "avaliacao": "nota"
+}
+
 # ---------------------------------------------------------------------------
 # Leitura da base tratada
 # ---------------------------------------------------------------------------
@@ -339,15 +349,21 @@ print(aval_tipo)
 linhas = []
 
 # Adiciona uma métrica à tabela consolidada
-def adicionar(secao, metrica, dimensao, categoria, valor, subcategoria=""):
+def adicionar(secao, metrica, dimensao, categoria, valor, unidade, subcategoria=""):
     linhas.append({
         "secao": secao,
         "metrica": metrica,
         "dimensao": dimensao,
         "categoria": categoria,
         "subcategoria": subcategoria,
-        "valor": valor
+        "valor": valor,
+        "unidade": unidade
     })
+
+
+# A contagem (count) é em vendas; as demais estatísticas usam a unidade da coluna
+def unidade_estatistica(estatistica, unidade_coluna):
+    return "vendas" if estatistica == "count" else unidade_coluna
 
 
 # Estatísticas descritivas gerais
@@ -358,7 +374,8 @@ for coluna in descricao:
             estatistica,
             "coluna",
             coluna,
-            valor
+            valor,
+            unidade_estatistica(estatistica, UNIDADES_COLUNAS[coluna])
         )
 
 # Estatísticas descritivas do faturamento por mês
@@ -370,7 +387,8 @@ for mes, linha in descricao_mes.iterrows():
             "nome_mes",
             mes,
             valor,
-            "valor_total"
+            unidade_estatistica(estatistica, MOEDA),
+            subcategoria="valor_total"
         )
 
 # Perfil do cliente
@@ -381,7 +399,8 @@ for (tipo, genero), linha in perfil.iterrows():
         "tipo_cliente / genero",
         tipo,
         linha["qtd_vendas"],
-        genero
+        "vendas",
+        subcategoria=genero
     )
 
     adicionar(
@@ -390,7 +409,8 @@ for (tipo, genero), linha in perfil.iterrows():
         "tipo_cliente / genero",
         tipo,
         linha["faturamento"],
-        genero
+        MOEDA,
+        subcategoria=genero
     )
 
 
@@ -401,7 +421,8 @@ for filial, valor in fat_filial.items():
         "faturamento",
         "filial",
         filial,
-        valor
+        valor,
+        MOEDA
     )
 
     adicionar(
@@ -409,7 +430,8 @@ for filial, valor in fat_filial.items():
         "participacao_percentual",
         "filial",
         filial,
-        participacao[filial]
+        participacao[filial],
+        "%"
     )
 
 
@@ -422,7 +444,8 @@ for filial, linha in fat_filial_tipo.iterrows():
             "filial / tipo_cliente",
             filial,
             valor,
-            tipo
+            MOEDA,
+            subcategoria=tipo
         )
 
 
@@ -433,7 +456,8 @@ for produto, valor in fat_linha.items():
         "faturamento",
         "linha_produto",
         produto,
-        valor
+        valor,
+        MOEDA
     )
 
 
@@ -444,18 +468,46 @@ for filial, valor in qtd_filial.items():
         "qtd_vendas",
         "filial",
         filial,
-        valor
+        valor,
+        "vendas"
     )
 
 
-# Maior venda
+# Maior venda: uma linha para cada atributo da venda, todas com o valor total dela
 adicionar(
     "Vendas",
     "maior_venda",
     "id_venda",
     maior_venda["id_venda"],
     maior_venda["valor_total"],
-    maior_venda["filial"]
+    MOEDA
+)
+
+adicionar(
+    "Vendas",
+    "maior_venda",
+    "filial",
+    maior_venda["filial"],
+    maior_venda["valor_total"],
+    MOEDA
+)
+
+adicionar(
+    "Vendas",
+    "maior_venda",
+    "linha_produto",
+    maior_venda["linha_produto"],
+    maior_venda["valor_total"],
+    MOEDA
+)
+
+adicionar(
+    "Vendas",
+    "maior_venda",
+    "data_venda",
+    str(maior_venda["data_venda"].date()),
+    maior_venda["valor_total"],
+    MOEDA
 )
 
 
@@ -465,7 +517,8 @@ adicionar(
     "valor_medio",
     "geral",
     "todas",
-    valor_medio
+    valor_medio,
+    MOEDA
 )
 
 
@@ -476,7 +529,8 @@ for forma, valor in pagamento.items():
         "qtd_vendas",
         "forma_pagamento",
         forma,
-        valor
+        valor,
+        "vendas"
     )
 
 
@@ -487,7 +541,8 @@ for dia, valor in vendas_dia.items():
         "qtd_vendas",
         "dia_semana",
         dia,
-        valor
+        valor,
+        "vendas"
     )
 
 
@@ -498,7 +553,8 @@ for produto, valor in aval_linha.items():
         "avaliacao_media",
         "linha_produto",
         produto,
-        valor
+        valor,
+        "nota"
     )
 
 
@@ -509,20 +565,26 @@ for tipo, valor in aval_tipo.items():
         "avaliacao_media",
         "tipo_cliente",
         tipo,
-        valor
+        valor,
+        "nota"
     )
-
 
 # ---------------------------------------------------------------------------
 # Exportação do único CSV de métricas
 # ---------------------------------------------------------------------------
 
+# Contagens ficam sem casas decimais (340) e as demais com 2 casas (330.37)
+def limpar_numero(valor):
+    valor = round(float(valor), 2)
+    return int(valor) if valor.is_integer() else valor
+
+
 metricas = pd.DataFrame(linhas)
 
-metricas["valor"] = pd.to_numeric(
-    metricas["valor"],
-    errors="coerce"
-).round(2)
+metricas["valor"] = pd.Series(
+    [limpar_numero(v) for v in metricas["valor"]],
+    dtype=object
+)
 
 arquivo_saida = pasta_estatisticas / "metricas_analise.csv"
 

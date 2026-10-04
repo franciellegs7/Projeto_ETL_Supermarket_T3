@@ -103,10 +103,10 @@ def carregar_tratada(df):
 def main():
     df_raw = ler_raw()
     df_tratado = df_raw.copy()
-
     df_tratado = renomear_colunas(df_tratado)
     df_tratado = padronizar_textos(df_tratado)
     df_tratado = converter_tipos(df_tratado)
+    df_tratado = validar(df_tratado)
     df_tratado = criar_colunas_derivadas(df_tratado)
 
     carregar_tratada(df_tratado)

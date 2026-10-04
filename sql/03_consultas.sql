@@ -33,3 +33,33 @@ SELECT
     (SELECT ROUND(SUM(valor_total), 2) FROM vendas_tratadas)        AS soma_tratada,
     (SELECT COUNT(*) FROM vendas_tratadas
      WHERE data_venda IS NULL OR hora_venda IS NULL)                AS datas_horas_nulas;
+
+-- 3. Quantidade de vendas por forma de pagamento
+SELECT payment AS forma_pagamento,
+       COUNT(*) AS qtd_vendas
+FROM raw_vendas
+GROUP BY payment
+ORDER BY qtd_vendas DESC;
+
+-- 4. Valor médio das vendas (AVG)
+SELECT ROUND(AVG(CAST(total AS NUMERIC)), 2) AS valor_medio
+FROM raw_vendas;
+
+-- 5. Maior venda registrada
+SELECT invoice_id, branch, product_line, date, total
+FROM raw_vendas
+ORDER BY CAST(total AS NUMERIC) DESC
+LIMIT 1;
+
+-- 6. Quantidade de vendas por dia da semana (0 = domingo, 6 = sábado)
+SELECT EXTRACT(DOW FROM TO_DATE(date, 'MM/DD/YYYY')) AS dia_semana,
+       COUNT(*) AS qtd_vendas
+FROM raw_vendas
+GROUP BY dia_semana
+ORDER BY qtd_vendas DESC;
+
+-- 7. Vendas acima de 1000 (WHERE)
+SELECT invoice_id, branch, product_line, total
+FROM raw_vendas
+WHERE CAST(total AS NUMERIC) > 1000
+ORDER BY CAST(total AS NUMERIC) DESC;
